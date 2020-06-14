@@ -1,0 +1,46 @@
+#------------------------ shell profile stuff --------------------------------#
+
+# Add everything in ~/.local/bin to path
+export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
+
+# Set defaults
+export EDITOR="nvim"
+export TERMINAL="xfce4-terminal"
+
+# Switch escape and caps if tty and no passwd required:
+sudo -n loadkeys $HOME/.config/ttymaps.kmap 2>/dev/null
+
+#-------------------------- shell rc stuff ----------------------------------#
+
+# Switch escape and caps if tty and no passwd required:
+sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
+
+# Disable ctrl-s to freeze terminal.
+stty stop undef
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# Source dir_colors
+eval $(dircolors ~/.dir_colors)
+
+# Use neovim for vimouif present.
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+# Aliases
+alias c="compiler"
+alias f="$FILE"
+alias p="sudo pacman"
+
+alias cu="curl -O"
+alias open="xdg-open"
+
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -vI"
+alias mkd="mkdir -pv"
+
+alias ls="ls -hN --color=auto --group-directories-first"
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"

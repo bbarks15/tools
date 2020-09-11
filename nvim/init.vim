@@ -14,9 +14,6 @@ Plug 'wellle/targets.vim'
 Plug 'preservim/nerdcommenter'
 call plug#end()
 
-a ( b ( cccccccc ) d ) e
-a ( bbbbbbbb ) ( ccccccc ) ( dddddd ) ( eeeeeee ) ( ffffffff ) g
-
 "================================================
 " Nerd Commenter
 "================================================

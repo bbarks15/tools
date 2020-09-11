@@ -1,0 +1,33 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Stop CTRL-S
+stty stop undef
+
+# Edit command with vim
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# Use neovim for vim if present.
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+# Aliases
+alias c="compiler"
+alias cn="convert_number"
+alias f="$FILE"
+alias v="$EDITOR"
+alias p="sudo pacman"
+alias py="python -q"
+alias bc="bc -q"
+
+alias cu="curl -O"
+alias o="xdg-open"
+
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -vI"
+alias mkd="mkdir -pv"
+
+alias ls="ls -hN --color=auto --group-directories-first"
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"

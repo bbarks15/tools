@@ -2,8 +2,7 @@
 title:
 author: Brandon Barker
 date:
-output:
-  pdf_document:
-    number_sections: true
+geometry: margin=1in
+numbersections: true
 papersize: a4
 ---

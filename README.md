@@ -1,2 +1,2 @@
 # tools
-Scripts and config files for my workflow
+Scripts and minimal config files for my workflow

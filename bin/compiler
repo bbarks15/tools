@@ -8,8 +8,19 @@
 # Note that .tex files which you wish to compile with XeLaTeX should have the
 # string "xelatex" somewhere in a comment/command in the first 5 lines.
 
+run_program=false
 
-file=$(readlink -f "$1")
+while (( $# > 0 )); do case $1 in
+   -r|--run) run_program=true;;
+   -[^r]*) echo "Invalid argument supplied" && exit;;
+   *) file=$(readlink -f "$1") ;
+ esac; shift 1
+done
+
+if [ -z "$file" ]; then
+    echo "Give program to compile" && exit 1
+fi
+
 dir=${file%/*}
 base="${file%.*}"
 ext="${file##*.}"
@@ -26,15 +37,33 @@ textype() { \
 	$command --output-directory="$dir" "$base"
 }
 
-case "$ext" in
-	[rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
+compile()
+{
+    case "$ext" in
+        [rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
 	tex) textype "$file" ;;
-	md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
+	md) pandoc "$file" -o "$base".pdf ;;
         java) javac "$file" ;;
 	c) cc "$file" -o "$base" ;;
         cpp) g++ -std=c++11 -O2 -Wall "$file" -o "$base" ;;
+        dot) dot -Tpng "$file" -o "$base".png ;;
+    esac
+}
+
+run()
+{
+    case "$ext" in
+        java) java "${base##*/}" ;;
+	c) "$base" ;;
+        cpp) "$base" ;;
 	py) python3 "$file" ;;
         js) node "$file" ;;
-        m) octave "$file" ;;
 	*) sed 1q "$file" | grep "^#!/" | sed "s/^#!//" | xargs -r -I % "$file" ;;
-esac
+    esac
+}
+
+
+compile
+if ($run_program); then
+    run
+fi

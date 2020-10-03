@@ -65,9 +65,6 @@ map <silent><C-w>d :bdelete<CR>
 map <leader>c :w! \| !compiler <c-r>%<CR><CR>
 map <c-s> :w<CR>
 
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritepre * %s/\n\+\%$//e
-
 " autocmd FileType * setlocal fo-=c fo-=r fo-=o fo-=l
 
 autocmd BufNewFile *.c 0r ~/.config/nvim/templates/template.c

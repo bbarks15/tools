@@ -1,0 +1,28 @@
+#!/bin/sh
+
+
+TEMPLATE_DIR=~/.config/nvim/templates
+
+file=$(readlink -f "$1")
+dir=${file%/*}
+base=$(basename "${file%.*}")
+ext="${file##*.}"
+
+cd "$dir" || exit
+
+print_error() {
+    echo "Template not found in $TEMPLATE_DIR"
+    exit 1
+}
+
+write_template() {
+    ls $TEMPLATE_DIR/$1 &> /dev/null &&
+    cat $TEMPLATE_DIR/$1 | sed -e "s|FILENAME|$base|g" > $file
+}
+
+case "$file" in
+    *.*)
+        write_template *.{$ext,,} || print_error ;;
+    *)
+        write_template ${base,,} || print_error ;;
+esac

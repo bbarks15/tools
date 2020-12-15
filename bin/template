@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 TEMPLATE_DIR=~/.config/nvim/templates
@@ -17,12 +17,10 @@ print_error() {
 
 write_template() {
     ls $TEMPLATE_DIR/$1 &> /dev/null &&
-    cat $TEMPLATE_DIR/$1 | sed -e "s|FILENAME|$base|g" > $file
+    sed -e "s|FILENAME|$base|g" $TEMPLATE_DIR/$1 > $file
 }
 
 case "$file" in
-    *.*)
-        write_template *.{$ext,,} || print_error ;;
-    *)
-        write_template ${base,,} || print_error ;;
+    *.*) write_template "*.${ext,,}" || print_error ;;
+    *) write_template "${base,,}" || print_error ;;
 esac

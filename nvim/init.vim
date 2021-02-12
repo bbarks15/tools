@@ -31,6 +31,16 @@ map <C-_> <plug>NERDCommenterToggle
 map <silent> Zt :setlocal spell! spelllang=en_au<CR>
 autocmd BufRead,BufNewFile *.rmd,*.md,*.tex,*.txt setlocal spell spelllang=en_au
 
+
+"================================================
+" NETRW
+"================================================
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+
+
 "================================================
 " General Settings
 "================================================
@@ -51,7 +61,6 @@ set wildmode=longest,list,full
 set fo=tqn
 set tw=80
 set nowrap
-" set cursorline
 set splitbelow
 set splitright
 set startofline
@@ -65,11 +74,15 @@ map <silent><C-w>d :bdelete<CR>
 map <leader>c :w! \| !compiler <c-r>%<CR><CR>
 map <c-s> :w<CR>
 
-" autocmd FileType * setlocal fo-=c fo-=r fo-=o fo-=l
+autocmd FileType * setlocal fo-=c fo-=r fo-=o fo-=l
 
-autocmd BufNewFile *.c 0r ~/.config/nvim/templates/template.c
-autocmd BufNewFile *.cpp,*.cc 0r ~/.config/nvim/templates/template.cpp
-autocmd BufNewFile *.java 0r ~/.config/nvim/templates/template.java
-            \ | s/CLASS/\=expand("%:t:r")/g
-autocmd BufNewFile *.html 0r ~/.config/nvim/templates/template.html
-autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/template.sh
+au BufNewFile *.c 0r ~/.config/nvim/templates/template.c
+au BufNewFile *.cpp,*.cc 0r ~/.config/nvim/templates/template.cpp
+au BufNewFile *.ino 0r ~/.config/nvim/templates/template.ino
+au BufNewFile *.rs 0r ~/.config/nvim/templates/template.rs
+au BufNewFile *.hs 0r ~/.config/nvim/templates/template.hs
+au BufNewFile *.java 0r ~/.config/nvim/templates/template.java | s/FILENAME/\=expand("%:t:r")/g
+au BufNewFile *.html 0r ~/.config/nvim/templates/template.html
+
+au BufNewFile *.sh 0r ~/.config/nvim/templates/template.sh | ! chmod +x %
+au BufNewFile *.py 0r ~/.config/nvim/templates/template.py | ! chmod +x %

@@ -1,10 +1,6 @@
 # Stop CTRL-S
 stty stop undef
 
-# Edit command with vim
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
-
 # Start typing + [Up-Arrow] - fuzzy find history forward
 if [[ -n "${terminfo[kcuu1]}" ]]; then
   autoload -U up-line-or-beginning-search

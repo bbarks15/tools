@@ -25,6 +25,7 @@ command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
 
 # Aliases
 alias c="compiler"
+alias run="compiler --run"
 alias f="$FILE"
 alias v="$EDITOR"
 alias p="sudo pacman"

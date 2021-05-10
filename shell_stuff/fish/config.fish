@@ -32,8 +32,6 @@ alias py="python -q"
 alias x="chmod +x"
 alias bc="bc -q"
 
-alias doom="~/.emacs.d/bin/doom"
-
 alias cu="curl -O"
 alias o="xdg-open"
 

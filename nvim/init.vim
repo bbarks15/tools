@@ -74,6 +74,8 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
 
+nmap Y y$
+
 map <silent><C-w>n :bnext<CR>
 map <silent><C-w>p :bprevious<CR>
 map <silent><C-w>d :bdelete<CR>

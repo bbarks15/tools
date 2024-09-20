@@ -8,4 +8,3 @@ command -v nvim >/dev/null && export EDITOR="nvim" || export EDITOR="vim"
 export FILE="ranger"
 export BROWSER="firefox-developer-edition"
 export TERMINAL="st"
-
